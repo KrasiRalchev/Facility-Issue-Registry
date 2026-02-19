@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block title %}
+    Issue: {{ issue.description|truncatechars:22 }}
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">
+        🛠️ Issue ISD-{{ issue.id }}: {{ issue.description }}
+    </h2>
+
+    <div class="d-flex gap-2">
+        <a href="{% url 'issues:issue-edit' issue.pk %}" class="btn btn-warning">
+            Edit
+        </a>
+        <a href="{% url 'issues:issue-delete' issue.pk %}" class="btn btn-danger">
+            Delete
+        </a>
+        <a href="{% url 'issues:issue-list' %}" class="btn btn-secondary">
+            Back
+        </a>
+    </div>
+</div>
+
+<div class="card shadow-sm mb-4 position-relative">
+    <div class="card-body">
+
+        <style>
+            .facility-img {
+                width: 300px;
+                height: 300px;
+                object-fit: fill;
+                background-color: #f8f9fa;
+                border-radius: 8px;
+                border: 1px solid #ddd;
+            }
+        </style>
+
+        {% if issue.issue_image %}
+            <img
+                src="{{ issue.issue_image.url }}"
+                alt="Issue image"
+                class="facility-img"
+            >
+        {% else %}
+            <p>No photo uploaded.</p>
+        {% endif %}
+
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <p><strong>Facility:</strong> {{ issue.facility }}</p>
+        <p><strong>Location:</strong> {{ issue.location }}</p>
+        <p><strong>Cost Center:</strong> {{ issue.facility.cost_center }}</p>
+        <p><strong>Cost Center Manager:</strong> {{ issue.facility.cc_manager }}</p>
+        <p><strong>Created at:</strong> {{ issue.created_at }}</p>
+        <p><strong>Resolved at:</strong> {{ issue.resolved_at }}</p>
+        <p><strong>Requester:</strong> {{ issue.requester }}</p>
+
+        <p>
+            <strong>Status:</strong>
+            <span
+                class="badge
+                    {% if issue.status|lower == 'open' %}
+                        bg-danger
+                    {% elif issue.status|lower == 'in_progress' %}
+                        bg-warning text-dark
+                    {% elif issue.status|lower == 'resolved' %}
+                        bg-info text-dark
+                    {% else %}
+                        bg-success
+                    {% endif %}
+                "
+            >
+                {{ issue.get_status_display }}
+            </span>
+
+            <strong class="ms-3">Priority:</strong>
+            <span
+                class="badge
+                    {% if issue.priority == 'low' %}
+                        bg-secondary
+                    {% elif issue.priority == 'medium' %}
+                        bg-info text-dark
+                    {% elif issue.priority == 'high' %}
+                        bg-warning text-dark
+                    {% else %}
+                        bg-danger
+                    {% endif %}
+                "
+            >
+                {{ issue.get_priority_display }}
+            </span>
+        </p>
+
+    </div>
+</div>
+
+{% if issue.status == 'OPEN' %}
+    <div class="d-flex gap-2 mt-4">
+        <a
+            href="{% url 'maintenance:action-create' issue.pk %}"
+            class="btn btn-success"
+        >
+            + Create Action
+        </a>
+    </div>
+        <p class="text-dark fw-bold mt-4">
+                <strong>To start processing, create an action for this issue!</strong>
+            </p>
+
+
+{% elif issue.status == "IN_PROGRESS" %}
+    <div class="d-flex gap-2 mt-4">
+        <a
+            href="{% url 'maintenance:action-resolve' issue.pk %}"
+            class="btn btn-primary"
+        >
+            + Resolve Action
+        </a>
+    </div>
+{% endif %}
+
+{% endblock %}
+

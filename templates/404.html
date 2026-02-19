@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Page not found{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column justify-content-center align-items-center" style="height: 60vh;">
+    <h1 class="display-1 text-danger">404</h1>
+    <h3 class="mb-4">Page not found</h3>
+    <p class="mb-4 text-center">
+        The page may have moved or the URL may be incorrect.
+    </p>
+    <a href="{% url 'facilities:facility-list' %}" class="btn btn-primary btn-lg">
+        Back to dashboard
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}New Action{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">📝 New Action for Issue ISD-{{ issue.id }}</h2>
+
+    <a href="{% url 'issues:issue-detail' issue.id %}" class="btn btn-secondary">
+        Back
+    </a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+
+                <p class="mb-3">
+                    <h5><strong>Issue:</strong> {{ issue.description }}</h5>
+                </p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <div class="d-flex justify-content-end gap-2 mt-4">
+                        <a href="{% url 'issues:issue-detail' issue.id %}" class="btn btn-secondary">
+                            Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

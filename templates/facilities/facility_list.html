@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Facilities{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">🏢 Facility List</h2>
+
+    <div class="d-flex gap-2">
+        <a href="{% url 'facilities:facility-create' %}" class="btn btn-primary">
+            + Insert facility
+        </a>
+        <a href="{% url 'facilities:facility-dashboard' %}" class="btn btn-secondary">
+            Back
+        </a>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+
+        <table class="table table-hover table-striped mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th>Facility name</th>
+                    <th>Location</th>
+                    <th>Responsible unit</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for facility in facilities %}
+                <tr>
+                    <td>
+                        <a href="{% url 'facilities:facility-detail' facility.pk %}" class="fw-semibold text-decoration-none">
+                            {{ facility.name }}
+                        </a>
+                    </td>
+                    <td>{{ facility.location }}</td>
+                    <td>{{ facility.unit }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center text-muted py-4">
+                        No facilities registered.
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}

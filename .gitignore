@@ -1,0 +1,34 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+
+# Environment variables
+.env
+
+# VS Code settings
+.vscode/
+
+# MacOS files
+.DS_Store
+
+# PyCharm files
+.idea/
+*.iml
+
+# Backup files
+*.bak
+*.swp
