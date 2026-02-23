@@ -78,20 +78,51 @@ source venv/bin/activate      # Linux / MacOS
 venv\Scripts\activate         # Windows
 pip install -r requirements.txt
 
-3. **Configure the database**
-PostgreSQL has been configured in settings.py.
+3. **Configure sensitive data via .env**
+All sensitive information such as Django SECRET_KEY and database credentials must be stored in a .env file in the root folder (same level as manage.py).
 
-4. **Apply migrations**
+Example .env:
+
+SECRET_KEY=your_secure_django_secret_key
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+
+Important:
+
+.env is ignored in Git via .gitignore
+
+Never commit .env to GitHub
+
+4. **Modify settings.py to read from .env**
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # loads variables from .env
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "facility_issue_registry_db",
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
+    }
+}
+
+5. **Apply migrations**
 python manage.py makemigrations
 python manage.py migrate
 
-5. **Run the server**
+6. **Run the server**
 python manage.py runserver
 
-6. **Access the application**
+7. **Access the application**
 Open http://127.0.0.1:8000/ in your browser.
 
-___
+---
 
 **Navigation**
 
