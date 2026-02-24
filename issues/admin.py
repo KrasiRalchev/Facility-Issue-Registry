@@ -7,6 +7,7 @@ from issues.models import Issue, Tag
 class IssueAdmin(admin.ModelAdmin):
     list_display = ['description', 'requester', 'status', 'priority', 'facility']
     search_fields = ['description', 'requester']
+    list_filter = ['status', 'priority', 'requester']
 
 
 @admin.register(Tag)
