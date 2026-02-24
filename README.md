@@ -69,7 +69,7 @@ The project consists of three Django apps:
 
 1. **Clone the repository:**
    ```bash
-   git clone <your-repo-url>
+   git clone git clone https://github.com/KrasiRalchev/Facility-Issue-Registry.git
    cd facility_issue_registry
    
 2. **Create a virtual environment and install dependencies**
