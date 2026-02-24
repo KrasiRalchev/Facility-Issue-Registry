@@ -18,7 +18,6 @@ class MaintenanceResolveForm(forms.ModelForm):
             'resolved_on': forms.DateInput(attrs={'type': 'date'}),
             'action_description': forms.Textarea(attrs={'rows': 5, 'cols': 50,
             'placeholder': 'Describe the measures taken here... '}),
-            'cost': forms.NumberInput(attrs={'type': 'number',}),
         }
 
     def __init__(self, *args, **kwargs):
