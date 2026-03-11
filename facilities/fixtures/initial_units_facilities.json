@@ -53,7 +53,7 @@
       "location": "Terminal 3",
       "cost_center": "3120000000",
       "cc_manager": "Stoyan Peev",
-      "inventory_number": "",
+      "inventory_number": "157641F453",
       "description": "",
       "installed_on": "1986-11-12",
       "is_active": true
@@ -68,7 +68,7 @@
       "location": "Pablic area",
       "cost_center": "1121108",
       "cc_manager": "Krasimir Ralchev",
-      "inventory_number": "",
+      "inventory_number": "152491F453",
       "description": "",
       "installed_on": "2013-06-04",
       "is_active": true
@@ -83,7 +83,7 @@
       "location": "Restricted area",
       "cost_center": "1121500",
       "cc_manager": "Dimitar Dimitrov",
-      "inventory_number": "",
+      "inventory_number": "164171F453",
       "description": "",
       "installed_on": "2004-01-07",
       "is_active": true
