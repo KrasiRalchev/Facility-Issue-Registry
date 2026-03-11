@@ -1,0 +1,182 @@
+[
+  {
+    "model": "facilities.unit",
+    "pk": 1,
+    "fields": { "name": "Electrical" }
+  },
+  {
+    "model": "facilities.unit",
+    "pk": 2,
+    "fields": { "name": "Telecommunication" }
+  },
+  {
+    "model": "facilities.unit",
+    "pk": 3,
+    "fields": { "name": "HVAC" }
+  },
+  {
+    "model": "facilities.unit",
+    "pk": 4,
+    "fields": { "name": "Airfield & Buildings" }
+  },
+  {
+    "model": "facilities.unit",
+    "pk": 5,
+    "fields": { "name": "Bagage Handling System" }
+  },
+  {
+    "model": "facilities.unit",
+    "pk": 6,
+    "fields": { "name": "GSE Maintenance" }
+  },
+  {
+    "model": "facilities.facility",
+    "pk": 7,
+    "fields": {
+      "name": "Rooftop 2",
+      "unit": 3,
+      "location": "Terminal 2 / roof",
+      "cost_center": "1662641626",
+      "cc_manager": "Stelian Atanasov",
+      "inventory_number": "6141814814",
+      "description": "Strong noise in the outer unit.",
+      "installed_on": "2013-06-07",
+      "is_active": true
+    }
+  },
+  {
+    "model": "facilities.facility",
+    "pk": 11,
+    "fields": {
+      "name": "Terminal 3",
+      "unit": 4,
+      "location": "Terminal 3",
+      "cost_center": "3120000000",
+      "cc_manager": "Stoyan Peev",
+      "inventory_number": "",
+      "description": "",
+      "installed_on": "1986-11-12",
+      "is_active": true
+    }
+  },
+  {
+    "model": "facilities.facility",
+    "pk": 12,
+    "fields": {
+      "name": "Main Power Station",
+      "unit": 1,
+      "location": "Pablic area",
+      "cost_center": "1121108",
+      "cc_manager": "Krasimir Ralchev",
+      "inventory_number": "",
+      "description": "",
+      "installed_on": "2013-06-04",
+      "is_active": true
+    }
+  },
+  {
+    "model": "facilities.facility",
+    "pk": 8,
+    "fields": {
+      "name": "Perimeter fence",
+      "unit": 4,
+      "location": "Restricted area",
+      "cost_center": "1121500",
+      "cc_manager": "Dimitar Dimitrov",
+      "inventory_number": "",
+      "description": "",
+      "installed_on": "2004-01-07",
+      "is_active": true
+    }
+  },
+  {
+    "model": "facilities.facility",
+    "pk": 13,
+    "fields": {
+      "name": "Terminal 3 / parking",
+      "unit": 4,
+      "location": "Parking T3",
+      "cost_center": "1121104",
+      "cc_manager": "Ivan Atanasov",
+      "inventory_number": "164191F453",
+      "description": "",
+      "installed_on": "2013-07-11",
+      "is_active": true
+    }
+  },
+  {
+    "model": "facilities.facility",
+    "pk": 14,
+    "fields": {
+      "name": "FM Building",
+      "unit": 4,
+      "location": "restricted area / west",
+      "cost_center": "3243364545",
+      "cc_manager": "Dimitar Stoyanov",
+      "inventory_number": "35345DFC23",
+      "description": "",
+      "installed_on": "2018-12-14",
+      "is_active": true
+    }
+  },
+  {
+    "model": "facilities.facility",
+    "pk": 15,
+    "fields": {
+      "name": "Carossel departure/ east",
+      "unit": 5,
+      "location": "Passanger handling hall",
+      "cost_center": "7879856546",
+      "cc_manager": "Georgi Dimitrov",
+      "inventory_number": "0958576767",
+      "description": "",
+      "installed_on": "2019-02-09",
+      "is_active": true
+    }
+  },
+  {
+    "model": "facilities.facility",
+    "pk": 16,
+    "fields": {
+      "name": "Transformer / TPA / 1",
+      "unit": 1,
+      "location": "Terminal 2 / east",
+      "cost_center": "3464645754",
+      "cc_manager": "Hristo Dimitrov",
+      "inventory_number": "5645552423",
+      "description": "",
+      "installed_on": "2013-02-27",
+      "is_active": true
+    }
+  },
+  {
+    "model": "facilities.facility",
+    "pk": 18,
+    "fields": {
+      "name": "FM Radio 752",
+      "unit": 2,
+      "location": "FM dept / office 5",
+      "cost_center": "5777768768",
+      "cc_manager": "Stoyan Spiridonov",
+      "inventory_number": "7674657GHN",
+      "description": "",
+      "installed_on": "2024-01-30",
+      "is_active": true
+    }
+  },
+  {
+    "model": "facilities.facility",
+    "pk": 19,
+    "fields": {
+      "name": "FM Radio 212",
+      "unit": 2,
+      "location": "office Services",
+      "cost_center": "4563456737",
+      "cc_manager": "Ivan Todorov",
+      "inventory_number": "5665768488",
+      "description": "Problem with the battery. Very old.",
+      "installed_on": "2024-06-04",
+      "is_active": true
+    }
+  }
+]

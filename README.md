@@ -1,84 +1,106 @@
-# Facility Issue Registry
+Facility Issue Registry
 
-**Facility Issue Registry** is a web application built with **Django**, designed to register, manage, and track issues in buildings and facilities of an airport or enterprise. The project demonstrates core Django concepts: models, forms, views, templates, CRUD functionality, and Bootstrap-based UI design.
+Facility Issue Registry is a web application built with Django, designed to register, manage, and track issues in buildings and facilities of an airport or enterprise. The project demonstrates core Django concepts: models, forms, views, templates, CRUD functionality, and Bootstrap-based UI design.
 
----
+🛠 Key Features
 
-## 🛠 Key Features
+Facility Management
 
-- **Facility Management**  
-  - Create, edit, delete, and view facility details  
-  - Upload facility images  
-  - Dashboard showing summary of issues per unit  
+Create, edit, delete, and view facility details
 
-- **Issue Management**  
-  - Create, edit, delete, and view issues  
-  - Statuses: Open, In Progress, Resolved, Closed  
-  - Image attachments for issues  
-  - Linked to a specific facility and filterable by status  
+Upload facility images
 
-- **Maintenance Actions**  
-  - Create actions for a given issue  
-  - Resolve actions and mark the issue as **Resolved**  
-  - Forms with partially disabled fields for data protection  
+Dashboard showing summary of issues per unit
 
-- **Dashboard & Reports**  
-  - View counts of open, in progress, and resolved issues per unit  
-  - Lists of issues with filtering by status or unit  
+Issue Management
 
-- **Template Features**  
-  - Base template and template inheritance  
-  - Navbar and footer included on all pages  
-  - Bootstrap styling  
-  - Custom template tags for counting open issues and total facilities  
-  - Custom 404 error page  
+Create, edit, delete, and view issues
 
----
+Statuses: Open, In Progress, Resolved, Closed
 
-## 📦 Technologies
+Image attachments for issues
 
-- Python 3.11  
-- Django 5.2+  
-- PostgreSQL 
-- Bootstrap 5  
-- Git for version control  
+Linked to a specific facility and filterable by status
 
----
+Maintenance Actions
 
-## 🗂 Project Structure
+Create actions for a given issue
+
+Resolve actions and mark the issue as Resolved
+
+Forms with partially disabled fields for data protection
+
+Dashboard & Reports
+
+View counts of open, in progress, and resolved issues per unit
+
+Lists of issues with filtering by status or unit
+
+Template Features
+
+Base template and template inheritance
+
+Navbar and footer included on all pages
+
+Bootstrap styling
+
+Custom template tags for counting open issues and total facilities
+
+Custom 404 error page
+
+📦 Technologies
+
+Python 3.11
+
+Django 5.2+
+
+PostgreSQL
+
+Bootstrap 5
+
+Git for version control
+
+🗂 Project Structure
 
 The project consists of three Django apps:
 
-1. **facilities**  
-   - Models: `Unit`, `Facility`  
-   - CRUD operations and dashboard  
+facilities
 
-2. **issues**  
-   - Models: `Issue`,  `Tag` 
-   - Statuses, priorities, facility relations  
-   - Create, edit, and delete issues  
+Models: Unit, Facility
 
-3. **maintenance**  
-   - Model: `MaintenanceAction`  
-   - Link actions to issues  
-   - Forms for creating and resolving actions  
+CRUD operations and dashboard
 
----
+issues
 
-## 📝 Installation and Running
+Models: Issue, Tag
 
-1. **Clone the repository:**
-   ```bash
-   git clone <your-repo-url>
-   cd facility_issue_registry
-   
-2. **Create a virtual environment and install dependencies**
+Statuses, priorities, facility relations
+
+Create, edit, and delete issues
+
+maintenance
+
+Model: MaintenanceAction
+
+Link actions to issues
+
+Forms for creating and resolving actions
+
+📝 Installation and Running
+
+Clone the repository:
+
+git clone https://github.com/KrasiRalchev/Facility-Issue-Registry.git
+cd facility_issue_registry
+
+Create a virtual environment and install dependencies
+
 python -m venv venv
 source venv/bin/activate      # Linux / MacOS
 venv\Scripts\activate         # Windows
 pip install -r requirements.txt
 
-3. **Configure sensitive data via .env**
+Configure sensitive data via .env
 All sensitive information such as Django SECRET_KEY and database credentials must be stored in a .env file in the root folder (same level as manage.py).
 
 Example .env:
@@ -93,7 +115,8 @@ Important:
 
 Never commit .env to GitHub
 
-4. **Modify settings.py to read from .env**
+Modify settings.py to read from .env
+
 import os
 from dotenv import load_dotenv
 
@@ -112,19 +135,25 @@ DATABASES = {
     }
 }
 
-5. **Apply migrations**
+Apply migrations
+
 python manage.py makemigrations
 python manage.py migrate
 
-6. **Run the server**
+Load initial fixture data (IMPORTANT)
+Before creating any Issue, you must load the fixture containing default Unit and Facility data. This ensures the Issue form has valid Facility options.
+
+python manage.py loaddata facilities/fixtures/initial_units_facilities.json
+
+Run the server
+
 python manage.py runserver
 
-7. **Access the application**
-Open http://127.0.0.1:8000/ in your browser.
+Access the application
+Open http://127.0.0.1:8000/
+ in your browser.
 
----
-
-**Navigation**
+📌 Navigation
 
 Facility Dashboard: /
 
@@ -142,8 +171,7 @@ Issue Detail / Edit / Delete: /issues/<id>/, /edit/, /delete/
 
 Maintenance Actions: /maintenance/<issue_id>/create/, /resolve/
 
-
-**Features**
+⚡ Features
 
 Full CRUD functionality for Facilities and Issues
 
