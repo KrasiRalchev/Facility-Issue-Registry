@@ -83,7 +83,8 @@ Model: - MaintenanceAction
 
 ## 1. Clone the repository
 
-git clone https://github.com/KrasiRalchev/Facility-Issue-Registry.git 
+git clone https://github.com/KrasiRalchev/Facility-Issue-Registry.git
+
 cd facility_issue_registry
 
 ## 2. Create virtual environment
@@ -109,7 +110,11 @@ Create a `.env` file in the project root directory (same level as `manage.py`).
 Example `.env` file:
 
 SECRET_KEY=your_secure_django_secret_key
+
+DB_NAME=your_db_name
+
 DB_USER=your_db_user
+
 DB_PASSWORD=your_db_password
 
 Important:
@@ -149,7 +154,8 @@ DATABASES = {
 
 ## 5. Apply migrations
 
-python manage.py makemigrations 
+python manage.py makemigrations
+
 python manage.py migrate
 
 ------------------------------------------------------------------------
