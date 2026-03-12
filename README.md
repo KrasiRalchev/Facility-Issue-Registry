@@ -86,7 +86,6 @@ Model: - MaintenanceAction
 git clone https://github.com/KrasiRalchev/Facility-Issue-Registry.git 
 cd facility_issue_registry
 
-
 ## 2. Create virtual environment
 
 python -m venv venv
@@ -101,7 +100,54 @@ venv\Scripts\activate         # Windows
 
 pip install -r requirements.txt
 
-## 4. Apply migrations
+## 4. Configure Environment Variables
+
+This project stores sensitive information in a `.env` file.
+
+Create a `.env` file in the project root directory (same level as `manage.py`).
+
+Example `.env` file:
+
+SECRET_KEY=your_secure_django_secret_key
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+
+Important:
+
+- The `.env` file is ignored by Git via `.gitignore`
+- Never commit the `.env` file to GitHub
+- Each developer must create their own `.env` file locally
+
+------------------------------------------------------------------------
+
+### settings.py configuration
+
+The project loads environment variables using `python-dotenv`.
+
+Example configuration in `settings.py`:
+
+```python
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
+    }
+}
+```
+------------------------------------------------------------------------
+
+## 5. Apply migrations
 
 python manage.py makemigrations 
 python manage.py migrate
@@ -119,7 +165,7 @@ This loads required **Units** and **Facilities** for the Issue form.
 
 ------------------------------------------------------------------------
 
-## 5. Run the server
+## 6. Run the server
 
 python manage.py runserver
 

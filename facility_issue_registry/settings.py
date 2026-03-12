@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'facility_issue_registry.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "facility_issue_registry_db",
+        "NAME": os.getenv("DB_NAME"),
         "USER": os.getenv("DB_USER"),
         "PASSWORD": os.getenv("DB_PASSWORD"),
         "HOST": "127.0.0.1",
