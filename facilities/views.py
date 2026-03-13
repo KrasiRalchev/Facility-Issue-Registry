@@ -1,14 +1,15 @@
 from django.db.models import Count, Q
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from facilities.forms import FacilityCreateForm, FacilityEditForm, FacilityDeleteForm
 from facilities.models import Facility, Unit
 from issues.choices import Status_choices
 
 
-def facility_dashboard(request):
-
+def facility_dashboard(request: HttpRequest) -> HttpResponse:
     units = Unit.objects.annotate(
        open_issues_count=Count(
             'facilities__issues',
@@ -38,66 +39,44 @@ def facility_dashboard(request):
     return render(request, 'facilities/facility_dashboard.html', context)
 
 
-def facility_list(request):
-    facilities = Facility.objects.filter(is_active=True)
+class FacilityListView(ListView):
+    model = Facility
+    template_name = 'facilities/facility_list.html'
+    context_object_name = 'facilities'
 
-    context = {
-        'facilities': facilities,
-    }
-    return render(request, 'facilities/facility_list.html', context)
-
-
-def facility_create(request: HttpRequest) -> HttpResponse:
-    form = FacilityCreateForm(request.POST or None, request.FILES or None)
-
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        return redirect('facilities:facility-list')
-
-    context = {
-        'form': form,
-    }
-    return render(request, 'facilities/facility_create.html', context)
+    def get_queryset(self):
+        return Facility.objects.filter(is_active=True)
 
 
-def facility_edit(request: HttpRequest, pk: int) -> HttpResponse:
-    facility = get_object_or_404(Facility, pk=pk)
-    form = FacilityEditForm(request.POST or None, request.FILES or None, instance=facility)
-
-    if form.is_valid():
-        form.save()
-        return redirect('facilities:facility-list')
-
-    context = {
-        'form': form,
-    }
-    return render(request, 'facilities/facility_edit.html', context)
+class FacilityCreateView(CreateView):
+    model = Facility
+    form_class = FacilityCreateForm
+    template_name = 'facilities/facility_create.html'
+    success_url = reverse_lazy('facilities:facility-list')
 
 
-def facility_delete(request: HttpRequest, pk: int) -> HttpResponse:
-    facility = get_object_or_404(Facility, pk=pk)
-
-    if request.method == 'POST':
-        facility.delete()
-        return redirect('facilities:facility-list')
-
-    form = FacilityDeleteForm(instance=facility)
-
-    context = {
-        'form': form,
-    }
-
-    return render(request, 'facilities/facility_delete.html', context)
+class FacilityEditView(UpdateView):
+    model = Facility
+    form_class = FacilityEditForm
+    template_name = 'facilities/facility_edit.html'
+    success_url = reverse_lazy('facilities:facility-list')
 
 
-def facility_detail(request: HttpRequest, pk: int) -> HttpResponse:
-    facility = get_object_or_404(Facility, pk=pk)
+class FacilityDeleteView(DeleteView):
+    model = Facility
+    template_name = 'facilities/facility_delete.html'
+    success_url = reverse_lazy('facilities:facility-list')
 
-    context = {
-        'facility': facility,
-    }
-    return render(request, 'facilities/facility_detail.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = FacilityDeleteForm(instance=self.object)
+        return context
 
+
+class FacilityDetailView(DetailView):
+    model = Facility
+    template_name = 'facilities/facility_detail.html'
+    context_object_name = 'facility'
 
 
 

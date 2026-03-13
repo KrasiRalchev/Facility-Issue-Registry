@@ -1,15 +1,15 @@
 from django.urls import path
 
-from facilities.views import facility_list, facility_create, facility_edit, facility_delete, facility_detail, \
-    facility_dashboard
+from facilities.views import facility_dashboard, FacilityListView, FacilityCreateView, \
+    FacilityEditView, FacilityDeleteView, FacilityDetailView
 
 app_name = 'facilities'
 
 urlpatterns = [
     path('', facility_dashboard, name='facility-dashboard'),
-    path('list/', facility_list, name='facility-list'),
-    path('create/', facility_create, name='facility-create'),
-    path('<int:pk>/edit/', facility_edit, name='facility-edit'),
-    path('<int:pk>/delete/', facility_delete, name='facility-delete'),
-    path('<int:pk>/', facility_detail, name='facility-detail'),
+    path('facilities/', FacilityListView.as_view(), name='facility-list'),
+    path('create/', FacilityCreateView.as_view(), name='facility-create'),
+    path('<int:pk>/edit/', FacilityEditView.as_view(), name='facility-edit'),
+    path('<int:pk>/delete/', FacilityDeleteView.as_view(), name='facility-delete'),
+    path('<int:pk>/', FacilityDetailView.as_view(), name='facility-detail'),
 ]
