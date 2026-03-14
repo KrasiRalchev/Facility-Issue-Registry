@@ -178,5 +178,35 @@
       "installed_on": "2024-06-04",
       "is_active": true
     }
+  },
+  {
+    "model": "issues.tag",
+    "pk": 1,
+    "fields": { "name": "Urgent" }
+  },
+   {
+    "model": "issues.tag",
+    "pk": 2,
+    "fields": { "name": "Report " }
+  },
+  {
+    "model": "issues.tag",
+    "pk": 3,
+    "fields": { "name": "Feedback" }
+  },
+  {
+    "model": "issues.tag",
+    "pk": 4,
+    "fields": { "name": "ASAP" }
+  },
+  {
+    "model": "issues.tag",
+    "pk": 5,
+    "fields": { "name": "Access Point" }
+  },
+  {
+    "model": "issues.tag",
+    "pk": 6,
+    "fields": { "name": "Not Urgent" }
   }
 ]

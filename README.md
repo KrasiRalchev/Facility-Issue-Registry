@@ -85,7 +85,7 @@ Model: - MaintenanceAction
 
 git clone https://github.com/KrasiRalchev/Facility-Issue-Registry.git
 
-cd facility_issue_registry
+cd Facility-Issue-Registry
 
 ## 2. Create virtual environment
 
@@ -164,10 +164,9 @@ python manage.py migrate
 
 Before creating Issues you must load the fixture data:
 
-python manage.py loaddata
-facilities/fixtures/initial_units_facilities.json
+python manage.py loaddata fixtures/initial_units_facilities.json
 
-This loads required **Units** and **Facilities** for the Issue form.
+This loads required **Units**, **Facilities** and **Tags** for the Issue form.
 
 ------------------------------------------------------------------------
 
