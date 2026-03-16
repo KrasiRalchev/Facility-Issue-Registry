@@ -58,7 +58,7 @@
         <p><strong>Cost Center:</strong> {{ issue.facility.cost_center }}</p>
         <p><strong>Cost Center Manager:</strong> {{ issue.facility.cc_manager }}</p>
         <p><strong>Created at:</strong> {{ issue.created_at }}</p>
-        <p><strong>Resolved at:</strong> {{ issue.resolved_at }}</p>
+        <p><strong>Resolved at:</strong> {{ issue.actions.first.resolved_on|date:"d-m-Y" }}</p>
         <p><strong>Requester:</strong> {{ issue.requester }}</p>
 
         <p>
