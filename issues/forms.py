@@ -6,7 +6,7 @@ from issues.models import Issue
 class IssueFormBase(forms.ModelForm):
     class Meta:
         model = Issue
-        exclude = ['is_critical', 'resolved_at']
+        exclude = ['is_critical', 'resolved_at', 'status']
 
         widgets = {
            'created_at' : forms.DateInput(attrs={'type': 'date'}),
