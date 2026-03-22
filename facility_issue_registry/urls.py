@@ -23,6 +23,7 @@ PROJECT_URLS = [
     path('', include('facilities.urls')),
     path('issues/', include('issues.urls')),
     path('maintenance/', include('maintenance.urls')),
+    path('accounts/', include('accounts.urls')),
 ]
 
 urlpatterns = [
