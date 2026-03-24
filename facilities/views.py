@@ -1,6 +1,5 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count, Q
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
@@ -9,37 +8,41 @@ from facilities.models import Facility, Unit
 from issues.choices import Status_choices
 
 
-def facility_dashboard(request: HttpRequest) -> HttpResponse:
-    units = Unit.objects.annotate(
-       open_issues_count=Count(
-            'facilities__issues',
-            filter=Q(
-                facilities__is_active=True,
-                facilities__issues__status__in=[Status_choices.OPEN]
+class FacilityDashboardView(LoginRequiredMixin ,ListView):
+    model = Unit
+    template_name = 'facilities/facility_dashboard.html'
+    context_object_name = 'units'
+
+    def get_queryset(self):
+        return Unit.objects.annotate(
+            open_issues_count=Count(
+                'facilities__issues',
+                filter=Q(
+                    facilities__is_active=True,
+                    facilities__issues__status__in=[Status_choices.OPEN]
+                ),
+                distinct=True
             ),
-            distinct=True
-        ),
-        in_progress_issues_count=Count('facilities__issues', filter=Q(
-            facilities__is_active=True,
-            facilities__issues__status__in=[Status_choices.IN_PROGRESS]
+            in_progress_issues_count=Count(
+                'facilities__issues',
+                filter=Q(
+                    facilities__is_active=True,
+                    facilities__issues__status__in=[Status_choices.IN_PROGRESS]
+                ),
+                distinct=True
             ),
-            distinct=True
-        ),
-        resolved_issues_count=Count('facilities__issues', filter=Q(
-            facilities__is_active=True,
-            facilities__issues__status__in=[Status_choices.RESOLVED]
-            ),
-            distinct=True
+            resolved_issues_count=Count(
+                'facilities__issues',
+                filter=Q(
+                    facilities__is_active=True,
+                    facilities__issues__status__in=[Status_choices.RESOLVED]
+                ),
+                distinct=True
+            )
         )
-    )
-
-    context = {
-        'units': units,
-    }
-    return render(request, 'facilities/facility_dashboard.html', context)
 
 
-class FacilityListView(ListView):
+class FacilityListView(LoginRequiredMixin, ListView):
     model = Facility
     template_name = 'facilities/facility_list.html'
     context_object_name = 'facilities'
@@ -48,7 +51,7 @@ class FacilityListView(ListView):
         return Facility.objects.filter(is_active=True)
 
 
-class FacilityCreateView(CreateView):
+class FacilityCreateView(LoginRequiredMixin, CreateView):
     model = Facility
     form_class = FacilityCreateForm
     template_name = 'facilities/facility_create.html'
