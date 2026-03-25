@@ -1,7 +1,7 @@
 from django.core.validators import FileExtensionValidator
 from django.db import models
 
-from common.validators import validate_file_size
+from common.validators import validate_file_size_2mb
 
 
 class Unit(models.Model):
@@ -52,7 +52,7 @@ class Facility(models.Model):
         upload_to='facility_images/',
         blank=True,
         null=True,
-        validators=[validate_file_size,
+        validators=[validate_file_size_2mb,
         FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png']),
     ])
 

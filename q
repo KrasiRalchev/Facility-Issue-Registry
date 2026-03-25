@@ -1,0 +1,21 @@
+[33m61d3f96[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32minitial[m[33m)[m register, login, logout added
+[33mf15296b[m RegisterView, HomePageView, Profile Model added
+[33mfc844bd[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m change in issue_detail.html_Resolved_at
+[33mcbd372d[m include status in issues/forms - exclude[]
+[33m6c45d5a[m fixtures and README are modified
+[33m5754c1d[m correction in facilities/urls and back botton added in facility_detail.html
+[33m784ffed[m fbv in facilities/views changed with cbv
+[33ma541967[m readme.md changes
+[33madcbd56[m readme.md improvements and settings changes
+[33m4e3bff3[m Improve README documentation
+[33m98bd850[m Merge branch 'main' of https://github.com/KrasiRalchev/Facility-Issue-Registry
+[33m64b43b5[m[33m ([m[1;31morigin/bugfix[m[33m)[m initial_units_facilies.json_fix
+[33m3cf3340[m initial_units_facilities.json_added
+[33m823324c[m Fix repository URL in installation instructions
+[33mdf873e9[m maintenance models widgeds change
+[33mcb87ad4[m issues admin list_filter added
+[33m9bc05ed[m maintenance admin correction
+[33m1c76278[m maintenance admin changes
+[33meb84e9e[m Add .env.example with example environment variables
+[33mcd104c3[m Initial commit Facility Issue Registry
+[33m3b2a46f[m initial commit

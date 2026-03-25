@@ -7,7 +7,7 @@ from accounts.forms import RegisterForm
 from accounts.models import Profile
 
 
-class LoginPageView(LoginView):
+class LoginUserView(LoginView):
     template_name = 'accounts/login.html'
     redirect_authenticated_user = True
 
@@ -15,11 +15,11 @@ class LoginPageView(LoginView):
         return reverse_lazy('facilities:dashboard')
 
 
-class LogoutPageView(LogoutView):
+class LogoutUserView(LogoutView):
     next_page = reverse_lazy('accounts:login')
 
 
-class RegisterView(CreateView):
+class RegisterUserView(CreateView):
     form_class = RegisterForm
     template_name = 'accounts/register.html'
     success_url = reverse_lazy('facilities:dashboard')
@@ -30,7 +30,7 @@ class RegisterView(CreateView):
         return response
 
 
-class ProfileDetailView(LoginRequiredMixin, DetailView):
+class ProfileUserView(LoginRequiredMixin, DetailView):
     model = Profile
     template_name = 'accounts/user_profile.html'
     context_object_name = 'profile'

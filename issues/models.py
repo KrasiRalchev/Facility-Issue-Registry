@@ -2,7 +2,7 @@
 from django.core.validators import FileExtensionValidator
 from django.db import models
 
-from common.validators import validate_file_size
+from common.validators import validate_file_size_2mb
 from facilities.models import Facility
 from issues.choices import Priority_choices, Status_choices
 
@@ -57,7 +57,7 @@ class Issue(models.Model):
         upload_to='issue_images/',
         blank=True,
         null=True,
-        validators=[validate_file_size,
+        validators=[validate_file_size_2mb,
         FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png']),
         ])
     facility = models.ForeignKey(
