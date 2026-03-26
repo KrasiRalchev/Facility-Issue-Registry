@@ -1,2 +1,124 @@
+{% extends "base.html" %}
 
+{% block title %}User Profile{% endblock %}
 
+{% block content %}
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="mb-0">
+        👤 {{ user.get_full_name }}
+    </h3>
+
+    <div class="d-flex gap-2">
+        <a href="{% url 'accounts:profile-edit' profile.pk %}" class="btn btn-warning">
+            Edit
+        </a>
+        <a href="{% url 'facilities:dashboard' %}" class="btn btn-secondary">
+            Back
+        </a>
+    </div>
+</div>
+
+<div class="card shadow-sm mb-4 position-relative">
+    <div class="card-body">
+
+        <style>
+            .facility-img {
+                width: 300px;
+                height: 300px;
+                object-fit: fill;
+                background-color: #f8f9fa;
+                border-radius: 8px;
+                border: 1px solid #ddd;
+            }
+        </style>
+
+        {% if profile.photo %}
+            <img
+                src="{{ profile.photo.url }}"
+                alt="User image"
+                class="user-img"
+            >
+        {% else %}
+            <p>No photo uploaded.</p>
+        {% endif %}
+
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <p><strong>Company position:</strong> {{ profile.company_position }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone number:</strong> {{ profile.phone_number }}</p>
+        <p><strong>My manager:</strong> {{ profile.manager }}</p>
+        <p><strong>Last login:</strong> {{ user.last_login }}</p>
+
+{#        <p><strong>Resolved at:</strong> {{ issue.actions.first.resolved_on|date:"d-m-Y" }}</p>#}
+{#        <p><strong>Requester:</strong> {{ issue.requester }}</p>#}
+{##}
+{#        <p>#}
+{#            <strong>Status:</strong>#}
+{#            <span#}
+{#                class="badge#}
+{#                    {% if issue.status|lower == 'open' %}#}
+{#                        bg-danger#}
+{#                    {% elif issue.status|lower == 'in_progress' %}#}
+{#                        bg-warning text-dark#}
+{#                    {% elif issue.status|lower == 'resolved' %}#}
+{#                        bg-info text-dark#}
+{#                    {% else %}#}
+{#                        bg-success#}
+{#                    {% endif %}#}
+{#                "#}
+{#            >#}
+{#                {{ issue.get_status_display }}#}
+{#            </span>#}
+{##}
+{#            <strong class="ms-3">Priority:</strong>#}
+{#            <span#}
+{#                class="badge#}
+{#                    {% if issue.priority == 'low' %}#}
+{#                        bg-secondary#}
+{#                    {% elif issue.priority == 'medium' %}#}
+{#                        bg-info text-dark#}
+{#                    {% elif issue.priority == 'high' %}#}
+{#                        bg-warning text-dark#}
+{#                    {% else %}#}
+{#                        bg-danger#}
+{#                    {% endif %}#}
+{#                "#}
+{#            >#}
+{#                {{ issue.get_priority_display }}#}
+{#            </span>#}
+{#        </p>#}
+{##}
+{#    </div>#}
+{#</div>#}
+{##}
+{#{% if issue.status == 'OPEN' %}#}
+{#    <div class="d-flex gap-2 mt-4">#}
+{#        <a#}
+{#            href="{% url 'maintenance:action-create' issue.pk %}"#}
+{#            class="btn btn-success"#}
+{#        >#}
+{#            + Create Action#}
+{#        </a>#}
+{#    </div>#}
+{#        <p class="text-dark fw-bold mt-4">#}
+{#                <strong>To start processing, create an action for this issue!</strong>#}
+{#            </p>#}
+{##}
+{##}
+{#{% elif issue.status == "IN_PROGRESS" %}#}
+{#    <div class="d-flex gap-2 mt-4">#}
+{#        <a#}
+{#            href="{% url 'maintenance:action-resolve' issue.pk %}"#}
+{#            class="btn btn-primary"#}
+{#        >#}
+{#            + Resolve Action#}
+{#        </a>#}
+    </div>
+
+{% endblock %}

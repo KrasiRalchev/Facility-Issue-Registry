@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile Edit{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+
+            <div class="card shadow-sm p-4">
+                <h3 class="mb-4 text-center">Edit Profile</h3>
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label">Photo</label>
+                        {{ form.photo }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Company Position</label>
+                        {{ form.company_position }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number</label>
+                        {{ form.phone_number }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Manager</label>
+                        {{ form.manager }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Save Changes
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
