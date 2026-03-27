@@ -5,7 +5,7 @@ from maintenance.models import MaintenanceAction
 class MaintenanceCreateForm(forms.ModelForm):
     class Meta:
         model = MaintenanceAction
-        fields = ['performer', 'delivery_request',]
+        fields = ['performer', 'performer_name', 'requires_parts']
 
 
 class MaintenanceResolveForm(forms.ModelForm):

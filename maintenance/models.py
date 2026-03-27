@@ -2,7 +2,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 
 from issues.models import Issue
-from maintenance.choices import Service_choices
+from maintenance.choices import Service_choices, Required_parts_choices
 
 
 class MaintenanceAction(models.Model):
@@ -17,6 +17,11 @@ class MaintenanceAction(models.Model):
         max_length=40,
         choices=Service_choices.choices,
         default=Service_choices.INTERNAL_SERVICE
+    )
+    requires_parts = models.CharField(
+        max_length=30,
+        choices=Required_parts_choices,
+        default=Required_parts_choices.NO_NEED
     )
     performer_name = models.CharField(max_length=50, null=True, blank=True)
     delivery_request = models.BooleanField(default=False)
