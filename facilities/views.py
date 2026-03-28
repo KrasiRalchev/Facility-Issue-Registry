@@ -58,14 +58,14 @@ class FacilityCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('facilities:facility-list')
 
 
-class FacilityEditView(UpdateView):
+class FacilityEditView(LoginRequiredMixin, UpdateView):
     model = Facility
     form_class = FacilityEditForm
     template_name = 'facilities/facility_edit.html'
     success_url = reverse_lazy('facilities:facility-list')
 
 
-class FacilityDeleteView(DeleteView):
+class FacilityDeleteView(LoginRequiredMixin, DeleteView):
     model = Facility
     template_name = 'facilities/facility_delete.html'
     success_url = reverse_lazy('facilities:facility-list')
@@ -76,7 +76,7 @@ class FacilityDeleteView(DeleteView):
         return context
 
 
-class FacilityDetailView(DetailView):
+class FacilityDetailView(LoginRequiredMixin, DetailView):
     model = Facility
     template_name = 'facilities/facility_detail.html'
     context_object_name = 'facility'

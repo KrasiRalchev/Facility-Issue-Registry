@@ -27,7 +27,9 @@ class IssueFormCreate(IssueFormBase):
     ...
 
 class IssueFormEdit(IssueFormBase):
-    ...
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['facility'].disabled = True
 
 class IssueFormDelete(IssueFormBase):
     def __init__(self, *args, **kwargs):

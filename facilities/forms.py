@@ -37,8 +37,12 @@ class FacilityFormBase(forms.ModelForm):
 class FacilityCreateForm(FacilityFormBase):
     ...
 
+
 class FacilityEditForm(FacilityFormBase):
-    ...
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].disabled = True
+
 
 class FacilityDeleteForm(FacilityFormBase):
     def __init__(self, *args, **kwargs):
