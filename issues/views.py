@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -36,6 +36,15 @@ class IssueListView(LoginRequiredMixin, ListView):
     template_name = 'issues/issue_list.html'
     context_object_name = 'issues'
 
+    def get_queryset(self):
+        queryset = Issue.objects.all()
+
+        status = self.request.GET.get('status')
+
+        if status:
+            queryset = queryset.filter(status__iexact=status)
+        return queryset
+
 
 class IssueDetailView(LoginRequiredMixin, DetailView):
     model = Issue
@@ -43,39 +52,29 @@ class IssueDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'issue'
 
 
-class IssueCreateView(LoginRequiredMixin, CreateView):
+class IssueCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Issue
     form_class = IssueFormCreate
     template_name = 'issues/issue_create.html'
     success_url = reverse_lazy('facilities:dashboard')
 
+    permission_required = 'issues.add_issue'
 
-class IssueEditView(LoginRequiredMixin, UpdateView):
+
+class IssueEditView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Issue
     form_class = IssueFormEdit
     template_name = 'issues/issue_edit.html'
     success_url = reverse_lazy('facilities:dashboard')
 
+    permission_required = 'issues.change_issue'
 
-class IssueDeleteView(LoginRequiredMixin, DeleteView):
+
+class IssueDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Issue
     class_form = IssueFormDelete
     template_name = 'issues/issue_delete.html'
     success_url = reverse_lazy('facilities:dashboard')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    permission_required = 'issues.delete_issue'
 

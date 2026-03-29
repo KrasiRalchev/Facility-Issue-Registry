@@ -7,13 +7,14 @@
     <h2 class="mb-0">🏢 Facility List</h2>
 
     <div class="d-flex gap-2">
-        <a href="{% url 'facilities:facility-create' %}" class="btn btn-primary">
-            + Insert facility
-        </a>
-
-        <a href="{% url 'facilities:dashboard' %}" class="btn btn-secondary">
-            Back
-        </a>
+        {% if perms.facilities.add_facility %}
+            <a href="{% url 'facilities:facility-create' %}" class="btn btn-primary">
+                + Insert facility
+            </a>
+        {% endif %}
+            <a href="{% url 'facilities:dashboard' %}" class="btn btn-secondary">
+                Back
+            </a>
     </div>
 </div>
 

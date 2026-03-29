@@ -13,24 +13,28 @@
                 <a class="nav-link" href="{% url 'issues:issue-list' %}">
                     ISSUES
                     <span class="badge bg-success"
+                          style="cursor: pointer;"
                           data-bs-toggle="tooltip"
                           data-bs-placement="bottom"
-                          title="Number of open and in_progress requests">
+                          title="Number of open and in_progress issues">
                         {% open_issues_count %}
                     </span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'facilities:facility-list' %}">
-                    FACILITIES
-                    <span class="badge bg-success"
-                          data-bs-toggle="tooltip"
-                          data-bs-placement="bottom"
-                          title="Total number of facilities">
-                        {% total_facilities %}
-                    </span>
-                </a>
+                {% if perms.facilities.view_unit %}
+                    <a class="nav-link" href="{% url 'facilities:facility-list' %}">
+                        FACILITIES
+                        <span class="badge bg-success"
+                              style="cursor: pointer;"
+                              data-bs-toggle="tooltip"
+                              data-bs-placement="bottom"
+                              title="Total number of facilities">
+                            {% total_facilities %}
+                        </span>
+                    </a>
+                {% endif %}
             </li>
             {% if request.user.is_authenticated %}
                 <li class="nav-item">

@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import Count, Q
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
@@ -8,7 +8,7 @@ from facilities.models import Facility, Unit
 from issues.choices import Status_choices
 
 
-class FacilityDashboardView(LoginRequiredMixin ,ListView):
+class FacilityDashboardView(LoginRequiredMixin, ListView):
     model = Unit
     template_name = 'facilities/facility_dashboard.html'
     context_object_name = 'units'
@@ -51,18 +51,22 @@ class FacilityListView(LoginRequiredMixin, ListView):
         return Facility.objects.filter(is_active=True)
 
 
-class FacilityCreateView(LoginRequiredMixin, CreateView):
+class FacilityCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Facility
     form_class = FacilityCreateForm
     template_name = 'facilities/facility_create.html'
     success_url = reverse_lazy('facilities:facility-list')
 
+    permission_required = 'facilities.add_facility'
 
-class FacilityEditView(LoginRequiredMixin, UpdateView):
+
+class FacilityEditView(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
     model = Facility
     form_class = FacilityEditForm
     template_name = 'facilities/facility_edit.html'
     success_url = reverse_lazy('facilities:facility-list')
+
+    permission_required = 'facilities.change_facility'
 
 
 class FacilityDeleteView(LoginRequiredMixin, DeleteView):

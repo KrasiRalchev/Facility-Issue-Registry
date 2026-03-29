@@ -1,4 +1,5 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 
@@ -7,15 +8,17 @@ from issues.models import Issue
 from maintenance.forms import MaintenanceCreateForm, MaintenanceResolveForm
 from maintenance.models import MaintenanceAction
 
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 
 
-class ActionCreateView(LoginRequiredMixin, CreateView):
+class ActionCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = MaintenanceAction
     form_class = MaintenanceCreateForm
     template_name = 'maintenance/action_create.html'
+
+    permission_required = 'maintenance.add_maintenanceaction'
 
     def dispatch(self, request, *args, **kwargs):
         self.issue = get_object_or_404(Issue, pk=self.kwargs['issue_pk'])
@@ -38,7 +41,8 @@ class ActionCreateView(LoginRequiredMixin, CreateView):
         context['issue'] = self.issue
         return context
 
-
+@login_required
+@permission_required('maintenance.change_maintenanceaction')
 def resolve_action(request: HttpRequest, issue_pk: int) -> HttpResponse:
     issue = get_object_or_404(Issue, pk=issue_pk)
     last_action = issue.actions.last()

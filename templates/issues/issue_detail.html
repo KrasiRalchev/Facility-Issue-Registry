@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block title %}
     Issue: {{ issue.description|truncatechars:22 }}
 {% endblock %}
@@ -11,12 +12,16 @@
     </h2>
 
     <div class="d-flex gap-2">
-        <a href="{% url 'issues:issue-edit' issue.pk %}" class="btn btn-warning">
-            Edit
-        </a>
-        <a href="{% url 'issues:issue-delete' issue.pk %}" class="btn btn-danger">
-            Delete
-        </a>
+        {% if perms.issues.change_issue %}
+            <a href="{% url 'issues:issue-edit' issue.pk %}" class="btn btn-warning">
+                Edit
+            </a>
+        {% endif %}
+        {% if perms.issues.delete_issue %}
+            <a href="{% url 'issues:issue-delete' issue.pk %}" class="btn btn-danger">
+                Delete
+            </a>
+        {% endif %}
         <a href="{% url 'issues:issue-list' %}" class="btn btn-secondary">
             Back
         </a>
@@ -25,7 +30,6 @@
 
 <div class="card shadow-sm mb-4 position-relative">
     <div class="card-body">
-
         <style>
             .facility-img {
                 width: 300px;
@@ -46,13 +50,11 @@
         {% else %}
             <p>No photo uploaded.</p>
         {% endif %}
-
     </div>
 </div>
 
 <div class="card shadow-sm">
     <div class="card-body">
-
         <p><strong>Facility:</strong> {{ issue.facility }}</p>
         <p><strong>Location:</strong> {{ issue.location }}</p>
         <p><strong>Cost Center:</strong> {{ issue.facility.cost_center }}</p>
@@ -73,8 +75,7 @@
                         bg-info text-dark
                     {% else %}
                         bg-success
-                    {% endif %}
-                "
+                    {% endif %}"
             >
                 {{ issue.get_status_display }}
             </span>
@@ -90,40 +91,35 @@
                         bg-warning text-dark
                     {% else %}
                         bg-danger
-                    {% endif %}
-                "
+                    {% endif %}"
             >
                 {{ issue.get_priority_display }}
             </span>
         </p>
-
     </div>
 </div>
 
 {% if issue.status == 'OPEN' %}
     <div class="d-flex gap-2 mt-4">
-        <a
-            href="{% url 'maintenance:action-create' issue.pk %}"
-            class="btn btn-success"
-        >
-            + Create Action
-        </a>
+        {% if perms.maintenance.add_maintenanceaction %}
+            <a href="{% url 'maintenance:action-create' issue.pk %}" class="btn btn-success">
+                + Create Action
+            </a>
+        {% endif %}
     </div>
+    {% if perms.maintenance.add_maintenanceaction %}
         <p class="text-dark fw-bold mt-4">
-                <strong>To start processing, create an action for this issue!</strong>
-            </p>
-
-
+            <strong>To start processing, create an action for this issue!</strong>
+        </p>
+    {% endif %}
 {% elif issue.status == "IN_PROGRESS" %}
     <div class="d-flex gap-2 mt-4">
-        <a
-            href="{% url 'maintenance:action-resolve' issue.pk %}"
-            class="btn btn-primary"
-        >
-            + Resolve Action
-        </a>
+        {% if perms.maintenance.change_maintenanceaction %}
+            <a href="{% url 'maintenance:action-resolve' issue.pk %}" class="btn btn-primary">
+                + Resolve Action
+            </a>
+        {% endif %}
     </div>
 {% endif %}
 
 {% endblock %}
-

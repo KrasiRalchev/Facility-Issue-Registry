@@ -7,9 +7,11 @@
     <h2 class="mb-0">📊 Dashboard</h2>
 
     <div class="d-flex gap-2">
+        {% if perms.issues.add_issue %}
             <a href="{% url 'issues:issue-create' %}" class="btn btn-primary">
                 + Create issue
             </a>
+        {% endif %}
         </div>
 
 </div>
