@@ -6,7 +6,7 @@ from issues.models import Issue
 class IssueFormBase(forms.ModelForm):
     class Meta:
         model = Issue
-        fields = ['facility', 'location', 'description', 'priority', 'requester', 'issue_image', 'tags']
+        fields = ['facility', 'location', 'description', 'priority', 'issue_image', 'tags']
 
         widgets = {
            'created_at' : forms.DateInput(attrs={'type': 'date'}),

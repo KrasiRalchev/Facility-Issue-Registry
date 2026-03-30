@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
+from common.mixins import NotFoundRedirectMixin
 from facilities.models import Unit
 from issues.forms import IssueFormCreate, IssueFormDelete, IssueFormEdit
 from issues.models import Issue
@@ -37,7 +38,11 @@ class IssueListView(LoginRequiredMixin, ListView):
     context_object_name = 'issues'
 
     def get_queryset(self):
-        queryset = Issue.objects.all()
+
+        if self.request.user.is_staff:
+            queryset = Issue.objects.all()
+        else:
+            queryset = Issue.objects.filter(requester=self.request.user.get_full_name())
 
         status = self.request.GET.get('status')
 
@@ -46,10 +51,12 @@ class IssueListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-class IssueDetailView(LoginRequiredMixin, DetailView):
+class IssueDetailView(LoginRequiredMixin, NotFoundRedirectMixin, DetailView):
     model = Issue
     template_name = 'issues/issue_detail.html'
     context_object_name = 'issue'
+
+    error_url = 'issues:error'
 
 
 class IssueCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -60,21 +67,25 @@ class IssueCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
     permission_required = 'issues.add_issue'
 
+    def form_valid(self, form):
+        form.instance.requester = self.request.user.get_full_name()
+        return super().form_valid(form)
 
-class IssueEditView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+
+class IssueEditView(LoginRequiredMixin, PermissionRequiredMixin, NotFoundRedirectMixin, UpdateView):
     model = Issue
     form_class = IssueFormEdit
     template_name = 'issues/issue_edit.html'
     success_url = reverse_lazy('facilities:dashboard')
 
     permission_required = 'issues.change_issue'
+    error_url = 'issues:error'
 
-
-class IssueDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+class IssueDeleteView(LoginRequiredMixin, PermissionRequiredMixin, NotFoundRedirectMixin, DeleteView):
     model = Issue
     class_form = IssueFormDelete
     template_name = 'issues/issue_delete.html'
     success_url = reverse_lazy('facilities:dashboard')
 
     permission_required = 'issues.delete_issue'
-
+    error_url = 'issues:error'

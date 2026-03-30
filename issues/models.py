@@ -58,8 +58,10 @@ class Issue(models.Model):
         blank=True,
         null=True,
         validators=[validate_file_size_2mb,
-        FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png']),
-        ])
+        FileExtensionValidator(
+            allowed_extensions=['jpg', 'jpeg', 'png']
+        ),
+    ])
     facility = models.ForeignKey(
         Facility,
         on_delete=models.CASCADE,

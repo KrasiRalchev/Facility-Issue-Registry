@@ -7,8 +7,13 @@ from maintenance.choices import Service_choices, Required_parts_choices
 
 class MaintenanceAction(models.Model):
     action_description = models.TextField()
-    started_on = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    edited_on = models.DateTimeField(auto_now=True)
+    started_on = models.DateTimeField(
+        auto_now_add=True,
+        null=True, blank=True
+    )
+    edited_on = models.DateTimeField(
+        auto_now=True
+    )
     resolved_on = models.DateTimeField(
         null=True,
         blank=True
@@ -23,8 +28,13 @@ class MaintenanceAction(models.Model):
         choices=Required_parts_choices,
         default=Required_parts_choices.NO_NEED
     )
-    performer_name = models.CharField(max_length=50, null=True, blank=True)
-    delivery_request = models.BooleanField(default=False)
+    performer_name = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True)
+    delivery_request = models.BooleanField(
+        default=False
+    )
     cost = models.DecimalField(
         max_digits=8,
         decimal_places=2,

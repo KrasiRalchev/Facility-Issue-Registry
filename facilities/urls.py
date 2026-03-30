@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic import TemplateView
 
 from facilities.views import FacilityDashboardView, FacilityListView, FacilityCreateView, \
     FacilityEditView, FacilityDeleteView, FacilityDetailView
@@ -12,4 +13,5 @@ urlpatterns = [
     path('<int:pk>/edit/', FacilityEditView.as_view(), name='facility-edit'),
     path('<int:pk>/delete/', FacilityDeleteView.as_view(), name='facility-delete'),
     path('<int:pk>/', FacilityDetailView.as_view(), name='facility-detail'),
+    path('error/invalid_issue/', TemplateView.as_view(template_name='404.html'), name='error'),
 ]

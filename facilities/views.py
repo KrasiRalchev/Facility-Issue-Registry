@@ -3,6 +3,7 @@ from django.db.models import Count, Q
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
+from common.mixins import NotFoundRedirectMixin
 from facilities.forms import FacilityCreateForm, FacilityEditForm, FacilityDeleteForm
 from facilities.models import Facility, Unit
 from issues.choices import Status_choices
@@ -60,19 +61,22 @@ class FacilityCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
     permission_required = 'facilities.add_facility'
 
 
-class FacilityEditView(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
+class FacilityEditView(LoginRequiredMixin,PermissionRequiredMixin, NotFoundRedirectMixin, UpdateView):
     model = Facility
     form_class = FacilityEditForm
     template_name = 'facilities/facility_edit.html'
     success_url = reverse_lazy('facilities:facility-list')
 
     permission_required = 'facilities.change_facility'
+    error_url = 'facilities:error'
 
 
-class FacilityDeleteView(LoginRequiredMixin, DeleteView):
+class FacilityDeleteView(LoginRequiredMixin, NotFoundRedirectMixin, DeleteView):
     model = Facility
     template_name = 'facilities/facility_delete.html'
     success_url = reverse_lazy('facilities:facility-list')
+
+    error_url = 'facilities:error'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -80,10 +84,12 @@ class FacilityDeleteView(LoginRequiredMixin, DeleteView):
         return context
 
 
-class FacilityDetailView(LoginRequiredMixin, DetailView):
+class FacilityDetailView(LoginRequiredMixin, NotFoundRedirectMixin, DetailView):
     model = Facility
     template_name = 'facilities/facility_detail.html'
     context_object_name = 'facility'
+
+    error_url = 'facilities:error'
 
 
 
