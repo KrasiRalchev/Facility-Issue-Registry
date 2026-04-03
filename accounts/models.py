@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
 from django.db import models
@@ -24,10 +25,8 @@ class Profile(models.Model):
     manager = models.CharField(
         max_length=30
     )
-    photo = models.ImageField(
-        upload_to='employee_photo/',
-        blank=True,
-        null=True,
+    photo = CloudinaryField('image',
+
         validators=[validate_file_size_1mb,
                     FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png']),
                     ])

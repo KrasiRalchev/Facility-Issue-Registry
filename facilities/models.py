@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.core.validators import FileExtensionValidator
 from django.db import models
 
@@ -48,10 +49,7 @@ class Facility(models.Model):
     is_active = models.BooleanField(
         default=True,
     )
-    facility_image = models.ImageField(
-        upload_to='facility_images/',
-        blank=True,
-        null=True,
+    facility_image = CloudinaryField('image',
         validators=[validate_file_size_2mb,
         FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png']),
     ])
