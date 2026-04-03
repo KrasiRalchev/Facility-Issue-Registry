@@ -1,10 +1,9 @@
-
-from django.core.validators import FileExtensionValidator
+from cloudinary.models import CloudinaryField
 from django.db import models
 
-from common.validators import validate_file_size_2mb
 from facilities.models import Facility
 from issues.choices import Priority_choices, Status_choices
+
 
 
 class Tag(models.Model):
@@ -53,15 +52,10 @@ class Issue(models.Model):
         null=True,
         blank=True,
     )
-    issue_image = models.ImageField(
-        upload_to='issue_images/',
+    issue_image = CloudinaryField('image',
         blank=True,
         null=True,
-        validators=[validate_file_size_2mb,
-        FileExtensionValidator(
-            allowed_extensions=['jpg', 'jpeg', 'png']
-        ),
-    ])
+    )
     facility = models.ForeignKey(
         Facility,
         on_delete=models.CASCADE,
