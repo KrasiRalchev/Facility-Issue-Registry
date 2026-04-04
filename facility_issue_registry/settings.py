@@ -43,7 +43,8 @@ PROJECT_APPS = [
     'common',
     'accounts',
     'cloudinary',
-    'cloudinary_storage'
+    'cloudinary_storage',
+    'rest_framework'
     ]
 
 INSTALLED_APPS = [
