@@ -4,8 +4,8 @@ Facility Issue Registry is a Django web application for managing technical issue
 It helps teams register facilities, report incidents, track maintenance work, and follow issues through to resolution.
 
 A demo version of the project is available online at: https://facilityissueregestry-grgfemaya4e2d9d7.italynorth-01.azurewebsites.net
-Superuser Username: admin
-Superuser Password: admin
+- Superuser Username: admin
+- Superuser Password: admin
 
 The project is built around a practical operational workflow:
 
