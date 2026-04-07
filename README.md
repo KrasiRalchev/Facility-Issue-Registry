@@ -265,15 +265,32 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-### 3. Load initial data
+# ⚠ IMPORTANT -- Load Initial Data
 
-The project includes fixture data required for initial usage.
+Before creating Issues you must load the fixture data:
+
+python manage.py loaddata fixtures/initial_units_facilities.json
+
+This loads required **Units**, **Facilities** and **Tags** for the Issue form.
+
+### Auth groups and permissions fixtures
+
+The project also includes fixtures for Django auth groups and permissions:
+
+- JSON fixture for Django `loaddata`:
 
 ```bash
-python manage.py loaddata fixtures/initial_units_facilities.json
+python manage.py loaddata fixtures/auth_groups_permissions.json
 ```
 
-This fixture populates core entities such as units, facilities, and tags used by the application.
+- PostgreSQL `.dump` fixture for `psql` restore:
+
+```bash
+psql -h 127.0.0.1 -U postgres -d your_db_name -f fixtures/auth_groups_permissions.dump
+```
+
+Use the JSON fixture when you want a Django-native load process. Use the `.dump` file when you want to restore the same PostgreSQL table data directly.
+
 
 ## Running the Development Server
 
@@ -337,7 +354,13 @@ If you keep the current screenshots folder, you can showcase the UI here:
 ![Facilities](screenshots/facility_list.png)
 
 ### Profile
-![Facilities](screenshots/profile.jpg)
+![Profile](screenshots/profile.jpg)
+
+### Groups
+![Groups](screenshots/groups.jpg)
+
+### Permissions
+![Permissions](screenshots/permissions.jpg)
 
 ## Future Improvements
 

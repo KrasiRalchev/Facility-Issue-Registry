@@ -1,0 +1,918 @@
+[
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "issues",
+    "model": "tag"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "issues",
+    "model": "issue"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "maintenance",
+    "model": "maintenanceaction"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "facilities",
+    "model": "unit"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "facilities",
+    "model": "facility"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "accounts",
+    "model": "profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add tag",
+    "content_type": [
+      "issues",
+      "tag"
+    ],
+    "codename": "add_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change tag",
+    "content_type": [
+      "issues",
+      "tag"
+    ],
+    "codename": "change_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete tag",
+    "content_type": [
+      "issues",
+      "tag"
+    ],
+    "codename": "delete_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view tag",
+    "content_type": [
+      "issues",
+      "tag"
+    ],
+    "codename": "view_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add issue",
+    "content_type": [
+      "issues",
+      "issue"
+    ],
+    "codename": "add_issue"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change issue",
+    "content_type": [
+      "issues",
+      "issue"
+    ],
+    "codename": "change_issue"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete issue",
+    "content_type": [
+      "issues",
+      "issue"
+    ],
+    "codename": "delete_issue"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view issue",
+    "content_type": [
+      "issues",
+      "issue"
+    ],
+    "codename": "view_issue"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add maintenance action",
+    "content_type": [
+      "maintenance",
+      "maintenanceaction"
+    ],
+    "codename": "add_maintenanceaction"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change maintenance action",
+    "content_type": [
+      "maintenance",
+      "maintenanceaction"
+    ],
+    "codename": "change_maintenanceaction"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete maintenance action",
+    "content_type": [
+      "maintenance",
+      "maintenanceaction"
+    ],
+    "codename": "delete_maintenanceaction"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view maintenance action",
+    "content_type": [
+      "maintenance",
+      "maintenanceaction"
+    ],
+    "codename": "view_maintenanceaction"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add unit",
+    "content_type": [
+      "facilities",
+      "unit"
+    ],
+    "codename": "add_unit"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change unit",
+    "content_type": [
+      "facilities",
+      "unit"
+    ],
+    "codename": "change_unit"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete unit",
+    "content_type": [
+      "facilities",
+      "unit"
+    ],
+    "codename": "delete_unit"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view unit",
+    "content_type": [
+      "facilities",
+      "unit"
+    ],
+    "codename": "view_unit"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add facility",
+    "content_type": [
+      "facilities",
+      "facility"
+    ],
+    "codename": "add_facility"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change facility",
+    "content_type": [
+      "facilities",
+      "facility"
+    ],
+    "codename": "change_facility"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete facility",
+    "content_type": [
+      "facilities",
+      "facility"
+    ],
+    "codename": "delete_facility"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view facility",
+    "content_type": [
+      "facilities",
+      "facility"
+    ],
+    "codename": "view_facility"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add profile",
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "codename": "add_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change profile",
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "codename": "change_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete profile",
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "codename": "delete_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view profile",
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "codename": "view_profile"
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "FIReg_Administrator",
+    "permissions": [
+      [
+        "add_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "change_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "delete_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "view_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "add_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "change_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "delete_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "view_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "add_group",
+        "auth",
+        "group"
+      ],
+      [
+        "change_group",
+        "auth",
+        "group"
+      ],
+      [
+        "delete_group",
+        "auth",
+        "group"
+      ],
+      [
+        "view_group",
+        "auth",
+        "group"
+      ],
+      [
+        "add_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "change_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "delete_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "view_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "add_user",
+        "auth",
+        "user"
+      ],
+      [
+        "change_user",
+        "auth",
+        "user"
+      ],
+      [
+        "delete_user",
+        "auth",
+        "user"
+      ],
+      [
+        "view_user",
+        "auth",
+        "user"
+      ],
+      [
+        "add_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "change_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "delete_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "view_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "add_facility",
+        "facilities",
+        "facility"
+      ],
+      [
+        "change_facility",
+        "facilities",
+        "facility"
+      ],
+      [
+        "delete_facility",
+        "facilities",
+        "facility"
+      ],
+      [
+        "view_facility",
+        "facilities",
+        "facility"
+      ],
+      [
+        "add_unit",
+        "facilities",
+        "unit"
+      ],
+      [
+        "change_unit",
+        "facilities",
+        "unit"
+      ],
+      [
+        "delete_unit",
+        "facilities",
+        "unit"
+      ],
+      [
+        "view_unit",
+        "facilities",
+        "unit"
+      ],
+      [
+        "add_issue",
+        "issues",
+        "issue"
+      ],
+      [
+        "change_issue",
+        "issues",
+        "issue"
+      ],
+      [
+        "delete_issue",
+        "issues",
+        "issue"
+      ],
+      [
+        "view_issue",
+        "issues",
+        "issue"
+      ],
+      [
+        "add_tag",
+        "issues",
+        "tag"
+      ],
+      [
+        "change_tag",
+        "issues",
+        "tag"
+      ],
+      [
+        "delete_tag",
+        "issues",
+        "tag"
+      ],
+      [
+        "view_tag",
+        "issues",
+        "tag"
+      ],
+      [
+        "add_maintenanceaction",
+        "maintenance",
+        "maintenanceaction"
+      ],
+      [
+        "change_maintenanceaction",
+        "maintenance",
+        "maintenanceaction"
+      ],
+      [
+        "delete_maintenanceaction",
+        "maintenance",
+        "maintenanceaction"
+      ],
+      [
+        "view_maintenanceaction",
+        "maintenance",
+        "maintenanceaction"
+      ],
+      [
+        "add_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "change_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "delete_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "view_session",
+        "sessions",
+        "session"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "FIReg_AirportUsers",
+    "permissions": [
+      [
+        "add_issue",
+        "issues",
+        "issue"
+      ],
+      [
+        "view_issue",
+        "issues",
+        "issue"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "FIReg_Support_Staff",
+    "permissions": [
+      [
+        "add_issue",
+        "issues",
+        "issue"
+      ],
+      [
+        "view_issue",
+        "issues",
+        "issue"
+      ],
+      [
+        "add_maintenanceaction",
+        "maintenance",
+        "maintenanceaction"
+      ],
+      [
+        "change_maintenanceaction",
+        "maintenance",
+        "maintenanceaction"
+      ],
+      [
+        "delete_maintenanceaction",
+        "maintenance",
+        "maintenanceaction"
+      ],
+      [
+        "view_maintenanceaction",
+        "maintenance",
+        "maintenanceaction"
+      ]
+    ]
+  }
+}
+]
