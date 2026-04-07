@@ -269,9 +269,14 @@ python manage.py migrate
 
 Before creating Issues you must load the fixture data:
 
+- JSON fixture for Django `loaddata`:
+
+```bash
 python manage.py loaddata fixtures/initial_units_facilities.json
+```
 
 This loads required **Units**, **Facilities** and **Tags** for the Issue form.
+
 
 ### Auth groups and permissions fixtures
 
