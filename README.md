@@ -205,7 +205,7 @@ Before running the project, make sure you have:
 
 ```bash
 git clone https://github.com/KrasiRalchev/Facility-Issue-Registry
-cd facility_issue_registry
+cd Facility-Issue-Registry
 ```
 
 ### 2. Create and activate a virtual environment
