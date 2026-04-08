@@ -95,6 +95,16 @@
             >
                 {{ issue.get_priority_display }}
             </span>
+            <strong class="ms-3">Special requirements:</strong>
+            <span>
+                    {% if issue.tags.exists %}
+                    {% for tag in issue.tags.all %}
+                    {{ tag.name }} {% if not loop.last %} | {% endif %}
+                    {% endfor %}
+                    {% else %}
+                        Missing
+                    {% endif %}
+            </span>
         </p>
     </div>
 </div>

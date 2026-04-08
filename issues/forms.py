@@ -9,14 +9,16 @@ class IssueFormBase(forms.ModelForm):
         fields = ['facility', 'location', 'description', 'priority', 'issue_image', 'tags']
 
         widgets = {
-           'created_at' : forms.DateInput(attrs={'type': 'date'}),
+            'created_at' : forms.DateInput(attrs={'type': 'date'}),
             'description' : forms.Textarea(attrs={'rows': 6, 'cols': 60,
-                'placeholder': ' Insert issue description and details here...'}),
+                 'placeholder': ' Insert issue description and details here...'}),
+            'tags': forms.CheckboxSelectMultiple(),
         }
 
         labels = {
             'title': 'Issue Title',
             'description': 'Description',
+            'tags': "Special requirements",
         }
 
         help_texts = {
