@@ -1,0 +1,32 @@
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - mailhog
+    environment:
+      DB_HOST: host.docker.internal
+
+  redis:
+    image: redis:7
+
+  celery:
+    build: .
+    command: celery -A facility_issue_registry worker --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+    environment:
+      DB_HOST: host.docker.internal
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "8026:8025"
+      - "1026:1025"

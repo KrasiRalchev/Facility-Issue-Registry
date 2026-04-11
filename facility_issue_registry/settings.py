@@ -37,7 +37,7 @@ CSRF_TRUSTED_ORIGINS = [host for host in (os.getenv('CSRF_TRUSTED_ORIGINS').spli
 # Application definition
 
 PROJECT_APPS = [
-    'issues',
+    'issues.apps.IssuesConfig',
     'maintenance',
     'facilities',
     'common',
@@ -101,6 +101,16 @@ DATABASES = {
     }
 }
 
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/1'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = '127.0.0.1'
+EMAIL_PORT = 1026
+FROM_EMAIL = os.getenv('FROM_EMAIL')
+EMAIL_USE_TLS = False
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -160,7 +170,7 @@ DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 LOGIN_URL = 'accounts:login'
 
-EMAIL_FROM = os.getenv('EMAIL_FROM')
+
 
 
 

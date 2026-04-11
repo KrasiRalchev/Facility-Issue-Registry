@@ -27,6 +27,12 @@ class Issue(models.Model):
 
     requester = models.CharField(max_length=30)
 
+    requester_email = models.EmailField(
+        max_length=50,
+        blank=True,
+        null=True,
+    )
+
     priority = models.CharField(
         max_length=10,
         choices=Priority_choices.choices,

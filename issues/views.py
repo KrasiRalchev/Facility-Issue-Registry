@@ -69,7 +69,8 @@ class IssueCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.requester = self.request.user.get_full_name()
-        return super().form_valid(form)
+        form.instance.requester_email = self.request.user.email
+        return super().form_valid(form)   # send signal to send_new_issue_notification()
 
 
 class IssueEditView(LoginRequiredMixin, PermissionRequiredMixin, NotFoundRedirectMixin, UpdateView):
