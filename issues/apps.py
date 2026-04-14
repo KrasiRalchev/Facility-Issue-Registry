@@ -6,4 +6,4 @@ class IssuesConfig(AppConfig):
     name = 'issues'
 
     def ready(self):
-        import issues.signals
+        from . import signals

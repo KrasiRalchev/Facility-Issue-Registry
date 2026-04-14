@@ -6,13 +6,15 @@ class MaintenanceCreateForm(forms.ModelForm):
     class Meta:
         model = MaintenanceAction
         fields = ['performer', 'performer_name', 'requires_parts']
-
+        labels = {'performer_name': 'Performer name / company name',
+                          'cost': 'Cost in €',
+                          'requires_parts': 'Necessary parts',
+                          }
 
 class MaintenanceResolveForm(forms.ModelForm):
     class Meta:
         model = MaintenanceAction
         fields = ['performer', 'performer_name', 'delivery_request', 'cost', 'action_description', 'resolved_on']
-        labels = {'performer_name': 'Performer name / company name', 'cost': 'Cost in €',}
 
         widgets = {
             'resolved_on': forms.DateInput(attrs={'type': 'date'}),

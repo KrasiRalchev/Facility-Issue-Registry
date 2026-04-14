@@ -11,9 +11,13 @@ services:
       - mailhog
     environment:
       DB_HOST: host.docker.internal
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/1
 
   redis:
     image: redis:7
+    ports:
+      - "6379:6379"
 
   celery:
     build: .
@@ -24,9 +28,11 @@ services:
       - redis
     environment:
       DB_HOST: host.docker.internal
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/1
 
   mailhog:
     image: mailhog/mailhog
     ports:
-      - "8026:8025"
-      - "1026:1025"
+      - "8025:8025"
+      - "1025:1025"

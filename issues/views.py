@@ -70,7 +70,8 @@ class IssueCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.requester = self.request.user.get_full_name()
         form.instance.requester_email = self.request.user.email
-        return super().form_valid(form)   # send signal to send_new_issue_notification()
+        return super().form_valid(form)
+        # send signal to send_new_issue_notification()
 
 
 class IssueEditView(LoginRequiredMixin, PermissionRequiredMixin, NotFoundRedirectMixin, UpdateView):
@@ -84,7 +85,7 @@ class IssueEditView(LoginRequiredMixin, PermissionRequiredMixin, NotFoundRedirec
 
 class IssueDeleteView(LoginRequiredMixin, PermissionRequiredMixin, NotFoundRedirectMixin, DeleteView):
     model = Issue
-    class_form = IssueFormDelete
+    form_class = IssueFormDelete
     template_name = 'issues/issue_delete.html'
     success_url = reverse_lazy('facilities:dashboard')
 

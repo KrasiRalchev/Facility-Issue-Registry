@@ -8,8 +8,7 @@ from .tasks import send_issue_email
 @receiver(post_save, sender=Issue)
 def send_new_issue_notification(sender, instance, created, **kwargs):
     if created:
-        send_issue_email(            #  send_issue_email.delay -> for asinc tasks
-
+        send_issue_email.delay(
             instance.id,
             instance.created_at,
             instance.description,

@@ -25,7 +25,7 @@ class MaintenanceAction(models.Model):
     )
     requires_parts = models.CharField(
         max_length=30,
-        choices=Required_parts_choices,
+        choices=Required_parts_choices.choices,
         default=Required_parts_choices.NO_NEED
     )
     performer_name = models.CharField(

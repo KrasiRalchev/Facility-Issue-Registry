@@ -44,7 +44,8 @@ PROJECT_APPS = [
     'accounts',
     'cloudinary',
     'cloudinary_storage',
-    'rest_framework'
+    'rest_framework',
+    'django_extensions',
     ]
 
 INSTALLED_APPS = [
@@ -86,7 +87,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'facility_issue_registry.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
@@ -101,16 +101,28 @@ DATABASES = {
     }
 }
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+# CELERY SETTINGS
+
+CELERY_BROKER_URL = os.getenv(
+    'CELERY_BROKER_URL',
+    'redis://localhost:6379/0'
+)
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/1'
+CELERY_RESULT_BACKEND = os.getenv(
+    'CELERY_RESULT_BACKEND',
+    'redis://localhost:6379/1'
+)
+
+# EMAIL SETTINGS
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = '127.0.0.1'
-EMAIL_PORT = 1026
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 FROM_EMAIL = os.getenv('FROM_EMAIL')
-EMAIL_USE_TLS = False
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
