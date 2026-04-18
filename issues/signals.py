@@ -8,13 +8,23 @@ from .tasks import send_issue_email
 @receiver(post_save, sender=Issue)
 def send_new_issue_notification(sender, instance, created, **kwargs):
     if created:
-        send_issue_email.delay(
+        # for synchronous tasks use:
+        send_issue_email(
             instance.id,
             instance.created_at,
             instance.description,
             instance.requester,
             instance.requester_email,
         )
+        # FOR ASYNCHRONOUS TASKS USE:
+        # send_issue_email.delay(
+        #     instance.id,
+        #     instance.created_at,
+        #     instance.description,
+        #     instance.requester,
+        #     instance.requester_email,
+        # )
+
 
 
 

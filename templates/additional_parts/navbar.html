@@ -35,6 +35,13 @@
                         </span>
                     </a>
                 {% endif %}
+
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'warehouse:product-list' %}">
+                    WAREHOUSE
+                </a>
+            </li>
+
             </li>
             {% if request.user.is_authenticated %}
                 <li class="nav-item">

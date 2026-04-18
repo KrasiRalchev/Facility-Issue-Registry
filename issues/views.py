@@ -83,11 +83,16 @@ class IssueEditView(LoginRequiredMixin, PermissionRequiredMixin, NotFoundRedirec
     permission_required = 'issues.change_issue'
     error_url = 'issues:error'
 
+
 class IssueDeleteView(LoginRequiredMixin, PermissionRequiredMixin, NotFoundRedirectMixin, DeleteView):
     model = Issue
-    form_class = IssueFormDelete
     template_name = 'issues/issue_delete.html'
     success_url = reverse_lazy('facilities:dashboard')
 
     permission_required = 'issues.delete_issue'
     error_url = 'issues:error'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = IssueFormDelete(instance=self.object)
+        return context

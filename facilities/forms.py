@@ -1,5 +1,5 @@
 from django import forms
-
+from common.utils import RequiredFieldsMarkerMixin, FieldsDisabledMixin
 from facilities.models import Facility
 
 
@@ -8,9 +8,17 @@ class FacilityFormBase(forms.ModelForm):
         model = Facility
         exclude = ['is_active']
         widgets = {
-            'installed_on' : forms.DateInput(attrs={'type': 'date'}),
-            'description' : forms.Textarea(attrs={'rows': 6})
-        }
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'unit': forms.Select(attrs={'class': 'form-control'}),
+            'location': forms.TextInput(attrs={'class': 'form-control'}),
+            'cost_center': forms.TextInput(attrs={'class': 'form-control'}),
+            'cc_manager': forms.TextInput(attrs={'class': 'form-control'}),
+            'inventory_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'rows': 6,
+                    'placeholder': 'ect.: Insert technical data or other information here...',
+                    'class': 'form-control'}),
+            'installed_on' : forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            }
 
         labels = {
             'name': 'Facility Name',
@@ -34,21 +42,18 @@ class FacilityFormBase(forms.ModelForm):
         return name
 
 
-class FacilityCreateForm(FacilityFormBase):
+class FacilityCreateForm(RequiredFieldsMarkerMixin, FacilityFormBase):
     ...
 
 
-class FacilityEditForm(FacilityFormBase):
+class FacilityEditForm(RequiredFieldsMarkerMixin, FacilityFormBase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['name'].disabled = True
 
 
-class FacilityDeleteForm(FacilityFormBase):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.disabled = True
+class FacilityDeleteForm(FieldsDisabledMixin, FacilityFormBase):
+    ...
 
 
 

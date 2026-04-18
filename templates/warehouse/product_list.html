@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block title %}Products list{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">🛠️ Warehouse product list</h2>
+
+        <div class="d-flex gap-2">
+        {% if perms.issues.add_product %}
+            <a href="{% url 'warehouse:product-create' %}" class="btn btn-primary">
+                + Add product
+            </a>
+        {% endif %}
+
+        <a href="{% url 'facilities:dashboard' %}" class="btn btn-secondary">
+            Back
+        </a>
+        </div>
+    </div>
+    
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <form method="GET" class="row align-items-end">
+
+            <!-- Category -->
+            <div class="col-md-3">
+                <label class="form-label fw-semibold">Category</label>
+                <select name="category" class="form-select">
+                    <option value="">All</option>
+                    <option value="electrical">Electrical</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="mechanical">Mechanical</option>
+                    <option value="construction">Construction</option>
+                    <option value="hvac">HVAC</option>
+                    <option value="movable equipment">Movable equipment</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
+
+            <!-- Button (до Category) -->
+            <div class="col-md-auto">
+                <button class="btn btn-secondary mt-4" type="submit">
+                    Filter
+                </button>
+            </div>
+
+            <!-- Spacer -->
+            <div class="col-md-1"></div>
+
+            <!-- Product -->
+            <div class="col-md-4">
+                <label class="form-label fw-semibold">Product</label>
+                <input
+                    type="text"
+                    name="q"
+                    placeholder="Search..."
+                    class="form-control"
+                >
+            </div>
+            <!-- Button (до Category) -->
+            <div class="col-md-auto">
+                <button class="btn btn-secondary mt-4" type="submit">
+                    Find
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+        <table class="table table-hover table-striped mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th>Internal code</th>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Price (EUR)</th>
+                    <th>Unit</th>
+                    <th>Avl Qty</th>
+                    <th>Min Qty</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for product in products %}
+
+                <tr>
+                    <td>
+                             <a  class="text-decoration-none">
+                                {{ product.internal_code }}
+                            </a>
+                        </td>
+                    <td>
+                             <a  class="text-decoration-none">
+                                {{ product.name }}
+                            </a>
+                        </td>
+                    <td>
+                         <a  class="text-decoration-none">
+                            {{ product.description|truncatechars:40 }}
+                        </a>
+                    </td>
+                     <td>
+                         <a  class="text-decoration-none">
+                            {{ product.price }}
+                        </a>
+                    </td>
+                    <td>
+                         <a  class="text-decoration-none">
+                            {{ product.unit }}
+                        </a>
+                    </td>
+                <td>
+                         <a  class="text-decoration-none">
+                            {{ product.quantity }}
+                        </a>
+                    </td>
+                 <td>
+                         <a  class="text-decoration-none">
+                            {{ product.min_quantity }}
+                        </a>
+                    </td>
+                 <td>
+                     <a href="{% url 'warehouse:product-edit' product.pk %}"><button>✏️</button></a>
+                    </td>
+                 <td>
+                     <a href="{% url 'warehouse:product-delete' product.pk %}"><button>🗑</button></a>
+                    </td>
+
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="2" class="text-center text-muted py-4">
+                        No products found
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}

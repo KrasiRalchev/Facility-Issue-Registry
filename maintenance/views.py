@@ -57,7 +57,7 @@ def resolve_action(request: HttpRequest, issue_pk: int) -> HttpResponse:
             issue.status = Status_choices.RESOLVED
             issue.save()
 
-            return redirect('issues:issue-detail', issue_pk)
+            return redirect('issues:issue-detail', pk=issue_pk)
     else:
         form = MaintenanceResolveForm(instance=last_action)
 
@@ -67,7 +67,6 @@ def resolve_action(request: HttpRequest, issue_pk: int) -> HttpResponse:
     }
 
     return render(request, 'maintenance/action_resolve.html', context)
-
 
 
 
