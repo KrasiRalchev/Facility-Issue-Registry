@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -8,22 +9,22 @@ from .tasks import send_issue_email
 @receiver(post_save, sender=Issue)
 def send_new_issue_notification(sender, instance, created, **kwargs):
     if created:
-        # for synchronous tasks use:
-        send_issue_email(
-            instance.id,
-            instance.created_at,
-            instance.description,
-            instance.requester,
-            instance.requester_email,
-        )
-        # FOR ASYNCHRONOUS TASKS USE:
-        # send_issue_email.delay(
-        #     instance.id,
-        #     instance.created_at,
-        #     instance.description,
-        #     instance.requester,
-        #     instance.requester_email,
-        # )
+        if settings.DEBUG:
+            send_issue_email(
+                instance.id,
+                instance.created_at,
+                instance.description,
+                instance.requester,
+                instance.requester_email,
+            )
+        else:
+            send_issue_email.delay(
+                instance.id,
+                instance.created_at,
+                instance.description,
+                instance.requester,
+                instance.requester_email,
+            )
 
 
 

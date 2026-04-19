@@ -77,9 +77,9 @@
                             Description: {{ issue.description }} : Created at: {{ issue.created_at }}
                         </a>
                         <span class="badge
-                            {% if issue.status == 'open' %} bg-danger
-                            {% elif issue.status == 'in_progress' %} bg-warning text-dark
-                            {% elif issue.status == 'resolved' %} bg-info text-dark
+                            {% if issue.status == 'OPEN' %} bg-danger
+                            {% elif issue.status == 'IN_PROGRESS' %} bg-warning text-dark
+                            {% elif issue.status == 'RESOLVED' %} bg-info text-dark
                             {% else %} bg-success
                             {% endif %}">
                             {{ issue.get_status_display }}

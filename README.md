@@ -40,6 +40,11 @@ The project is built around a practical operational workflow:
 - Store timestamps for action start, edit, and resolution
 - Resolve issues through maintenance workflows
 
+### Warehouse Management
+- Categorize items and resources
+- Support structured inventory data
+- Foundation for future stock tracking and warehouse operations
+
 ### User Accounts
 - User registration and login
 - Logout flow
@@ -55,6 +60,8 @@ The project is built around a practical operational workflow:
 - Cloudinary
 - WhiteNoise
 - Bootstrap 5
+- Celery
+- Redis (if used as broker)
 
 ## Project Structure
 
@@ -65,6 +72,7 @@ facility_issue_registry/
 ├── facilities/                # Units and facilities
 ├── issues/                    # Issue reporting and tracking
 ├── maintenance/               # Maintenance actions
+├── warehouse/                 # Warehouse categories and inventory data
 ├── fixtures/                  # Initial data fixtures
 ├── static/                    # Static assets
 ├── templates/                 # Shared templates
@@ -101,6 +109,16 @@ Contains:
 - `MaintenanceAction`
 
 A maintenance action belongs to an issue and records operational follow-up such as performer, delivery request, and cost.
+
+### `warehouse`
+Contains:
+- `Category`
+- `Product`
+
+Provides:
+- Categorization of inventory and materials
+- Data used for structuring warehouse-related entities
+- Foundation for future inventory and stock management features
 
 ## Data Model Overview
 
@@ -294,13 +312,15 @@ python manage.py loaddata fixtures/auth_groups_permissions.json
 psql -h 127.0.0.1 -U postgres -d your_db_name -f fixtures/auth_groups_permissions.dump
 ```
 
-Use the JSON fixture when you want a Django-native load process. Use the `.dump` file when you want to restore the same PostgreSQL table data directly.
 
+### Warehouse data fixture
 
-## Running the Development Server
+The project also includes a fixture for warehouse categories and related data:
+
+- JSON fixture for Django `loaddata`:
 
 ```bash
-python manage.py runserver
+python manage.py loaddata fixtures/warehouse_data.json
 ```
 
 Open the app at:
@@ -320,6 +340,38 @@ http://127.0.0.1:8000/
 The project uses Django's built-in authentication system with a custom `Profile` model connected through a one-to-one relationship.
 
 The login page is configured as the default authentication entry point.
+
+## ⚡ Asynchronous Tasks
+
+The project includes asynchronous task processing for handling background operations.
+
+This improves performance and user experience by offloading heavy or delayed tasks outside the request-response cycle.
+
+Async tasks are conditionally executed:
+
+- In development, tasks run synchronously (without a worker)
+- In production, tasks are dispatched via Celery using `.delay()`
+
+Typical use cases:
+- Background data processing
+- Sending notifications (e.g. issue-related emails)
+- Scheduled or delayed operations
+- Future support for reporting and integrations
+
+Technologies:
+- Celery (task queue)
+- Redis (message broker, if configured)
+
+Example capabilities:
+- Execute maintenance-related background logic
+- Send email notifications on issue creation
+- Prepare data for reports without blocking the UI
+- Enable scalable processing for future system growth
+
+### Running Celery worker (example)
+
+```bash
+celery -A facility_issue_registry worker -l info
 
 ## Testing
 
@@ -358,6 +410,9 @@ If you keep the current screenshots folder, you can showcase the UI here:
 ### Facilities
 ![Facilities](screenshots/facility_list.png)
 
+### Products
+![Facilities](screenshots/warehouse_product_list.jpg)
+
 ### Profile
 ![Profile](screenshots/profile.jpg)
 
@@ -366,6 +421,11 @@ If you keep the current screenshots folder, you can showcase the UI here:
 
 ### Permissions
 ![Permissions](screenshots/permissions.jpg)
+
+## Recent Improvements
+
+- Asynchronous task processing with Celery
+- Warehouse module for structured data and future inventory expansion
 
 ## Future Improvements
 
