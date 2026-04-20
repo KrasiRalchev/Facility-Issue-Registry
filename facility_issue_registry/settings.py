@@ -15,8 +15,9 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 import sys
-
+import ssl
 load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -117,6 +118,14 @@ CELERY_RESULT_BACKEND = os.getenv(
     'CELERY_RESULT_BACKEND',
     'redis://localhost:6379/1'
 )
+
+CELERY_BROKER_USE_SSL = {
+    "ssl_cert_reqs": ssl.CERT_NONE
+}
+
+CELERY_REDIS_BACKEND_USE_SSL = {
+    "ssl_cert_reqs": ssl.CERT_NONE
+}
 
 # EMAIL SETTINGS
 
