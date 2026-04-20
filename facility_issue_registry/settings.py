@@ -15,7 +15,6 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 import sys
-import ssl
 load_dotenv()
 
 
@@ -106,12 +105,21 @@ DATABASES = {
     }
 }
 
+# CELERY CONFIG
+
+CELERY_BROKER_URL = os.getenv(
+    "CELERY_BROKER_URL",
+    "redis://redis:6379/0"
+)
+
+CELERY_RESULT_BACKEND = os.getenv(
+    "CELERY_RESULT_BACKEND",
+    "redis://redis:6379/1"
+)
 
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
-
-CELERY_TASK_ALWAYS_EAGER = True
-CELERY_TASK_EAGER_PROPAGATES = True
+CELERY_TASK_IGNORE_RESULT = True
 
 # EMAIL SETTINGS
 
