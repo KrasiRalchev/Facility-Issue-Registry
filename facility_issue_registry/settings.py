@@ -108,24 +108,25 @@ DATABASES = {
 
 # CELERY SETTINGS
 
-CELERY_BROKER_URL = os.getenv(
-    'CELERY_BROKER_URL',
-    'redis://localhost:6379/0'
-)
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_BACKEND = os.getenv(
-    'CELERY_RESULT_BACKEND',
-    'redis://localhost:6379/1'
-)
+IS_PRODUCTION = os.getenv("WEBSITE_HOSTNAME") is not None
 
-CELERY_BROKER_USE_SSL = {
-    "ssl_cert_reqs": ssl.CERT_NONE
-}
+if IS_PRODUCTION:
+    # Azure
+    CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+    CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 
-CELERY_REDIS_BACKEND_USE_SSL = {
-    "ssl_cert_reqs": ssl.CERT_NONE
-}
+    CELERY_BROKER_USE_SSL = {
+        "ssl_cert_reqs": ssl.CERT_NONE
+    }
+
+    CELERY_REDIS_BACKEND_USE_SSL = {
+        "ssl_cert_reqs": ssl.CERT_NONE
+    }
+
+else:
+    # LOCAL / DOCKER
+    CELERY_BROKER_URL = "redis://redis:6379/0"
+    CELERY_RESULT_BACKEND = "redis://redis:6379/1"
 
 # EMAIL SETTINGS
 
