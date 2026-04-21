@@ -1,0 +1,62 @@
+name: Deploy Django App to Azure Web App
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Prepare artifact for deployment
+        run: |
+          mkdir deploy
+          cp -r manage.py requirements.txt facility_issue_registry accounts issues common static templates deploy/
+          cp -r staticfiles deploy/ || true
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: django-app
+          path: deploy/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: django-app
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_9A4391380B194A64A033D7B23A6904C6 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_50E27294FBB84E6DA1C61749B79F8623 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_913530F13C3C4A888657612F9187D2C0 }}
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: FacilityIssueRegestry
+          package: .
