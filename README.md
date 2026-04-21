@@ -49,7 +49,7 @@ The project is built around a practical operational workflow:
 - User registration and login
 - Logout flow
 - Profile page and profile editing
-- Extended profile information including phone number, birthdate, position, manager, and photo
+- Extended profile information including phone number, birth date, position, manager, and photo
 
 ## Tech Stack
 
@@ -171,7 +171,7 @@ Key fields:
 ### Profile
 Extends the built-in Django user with:
 - phone number
-- birthdate
+- birth date
 - company position
 - manager
 - photo
@@ -346,6 +346,11 @@ The login page is configured as the default authentication entry point.
 The project includes asynchronous task processing for handling background operations.
 
 This improves performance and user experience by offloading heavy or delayed tasks outside the request-response cycle.
+
+Async tasks are conditionally executed:
+
+- In development, tasks run synchronously (without a worker)
+- In production, tasks are dispatched via Celery using `.delay()`
 
 Typical use cases:
 - Background data processing
