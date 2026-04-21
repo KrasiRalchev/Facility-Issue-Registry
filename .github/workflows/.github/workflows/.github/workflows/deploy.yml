@@ -45,6 +45,7 @@ jobs:
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
+        
         with:
           name: django-app
 
@@ -59,4 +60,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: FacilityIssueRegestry
-          package: .
+          package: ./django-app
+
